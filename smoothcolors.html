@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<h1 style="font-size: 100px; border:1px solid; border-radius: 50%; margin: auto; position: relative; text-align:center; width:fit-content;" class="cla">Hello!</h1>
+	<!-- <div class="rnd" style="border: 5px rgb(256, 0, 0) solid; width:50px; height: 50px; text-align:center; position: relative; margin: auto;"></div> -->
+	<input  type="text" class="txt" value="10" style="position:relative; width: 90px; margin:auto; display:block; border: 2px blue solid;">
+
+	<input  type="text" class="txtr" value="10" style="position:relative; width: 60px; height: 30px; margin:auto; display:block; border: 10px red solid; border-radius:50%;">
+	<input  type="text" class="txtg" value="10" style="position:relative; width: 60px; height: 30px; margin:auto; display:block; border: 10px green solid; border-radius:50%;">
+	<input  type="text" class="txtb" value="10" style="position:relative; width: 60px; height: 30px; margin:auto; display:block; border: 10px blue solid; border-radius:50%;">
+
+</body>
+<script>
+var hr = document.querySelector (".cla");
+var ppx = 250;
+//var rnddiv = document.querySelector (".rnd");
+var opt = document.querySelector (".txt");
+
+var txtr = document.querySelector (".txtr");
+var txtg = document.querySelector (".txtg");
+var txtb = document.querySelector (".txtb");
+
+
+
+var r = 125;
+var g = 125;
+var b = 125;
+var ri = 1;
+var gi = 1;
+var bi = 1;
+var intervalid;
+var action = 1;
+
+function randfunc () {
+	this.innerHTML = getRandomInt(100);
+
+}	
+
+function getRandomInt(max) {
+	return Math.floor(Math.random() * Math.floor(max)) + 1;
+}
+
+function hrch () {
+//this.classList.replace ("cla", "blabla");
+this.style.border= ppx + "px rgb("+ r+", "+g+", "+b+") solid";
+if (ri==1) r++; else r-=3;
+if (r>255) {
+	ri=0;
+	r=255;
+}
+
+if (r<1) {
+	ri=1;
+	r=0;
+}
+
+
+if (gi==1) g++; else g-=2;
+if (g>255) {
+	gi=0;
+	g=255;
+}
+
+if (g<1) {
+	gi=1;
+	g=0;
+}
+
+
+
+if (bi==1) b++; else b-=1;
+if (b>255) {
+	bi=0;
+	b=255;
+}
+
+if (b<1) {
+	bi=1;
+	b=0;
+}
+
+txtr.value = r;
+txtg.value = g;
+txtb.value = b;
+txtr.style.border = "20px rgb("+r+", 0, 0) solid";
+txtg.style.border = "20px rgb(0, "+g+", 0) solid";
+txtb.style.border = "20px rgb(0, 0, "+b+") solid";
+
+
+
+	
+}
+window.onload = function (){
+// rnddiv.onclick = randfunc;
+hr.onclick = function () {
+	clearInterval(intervalid);
+	if (action==1) {
+	intervalid=setInterval(function () {
+		hrch.call(hr);
+
+}	, opt.value);
+ 
+action = 0;
+} else {
+	action = 1;
+} 
+
+hr.innerHTML="";
+
+
+}
+
+
+}
+</script>
+</html>
